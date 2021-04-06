@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Title -->
-    <title>Halim | Onepage Multipurpose Website</title>
+    <title>Company | Onepage Multipurpose Website</title>
    
     <?php wp_head(); ?>
 </head>
@@ -39,7 +39,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <nav class="navbar navbar-expand-md navbar-light">
-                        <a class="navbar-brand" href="#">halim</a>
+                        <a class="navbar-brand" href="<?php echo site_url();?>">Company</a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>

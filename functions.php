@@ -35,7 +35,7 @@ add_action('wp_enqueue_scripts', 'Company_enqueue_scripts');
 function Company_setup_theme()
 {
     add_theme_support('title-tag');
-    add_theme_support('post-thumbnails', array('sliders','team', 'Testimonials'));
+    add_theme_support('post-thumbnails', array('post', 'sliders', 'team', 'Testimonials', 'Gallery'));
     load_theme_textdomain('company', get_template_directory_uri() . '/language');
     register_nav_menus(array(
         'main-menu' => __('Primary Menu', 'company')
@@ -76,7 +76,7 @@ function Company_custom_posts()
             'singular_name' => __('Team', 'Company')
         ),
         'public' => true,
-        'supports' => array('title', 'editor', 'thumbnail', 'custom-fields','page-attributes')
+        'supports' => array('title', 'editor', 'thumbnail', 'custom-fields', 'page-attributes')
     ));
 
 
@@ -93,5 +93,115 @@ function Company_custom_posts()
         'public' => true,
         'supports' => array('thumbnail', 'custom-fields', 'page-attributes')
     ));
+
+
+    // Custom Gallery  with  Field 
+    register_post_type('Gallery', array(
+        'labels' => array(
+            'name' => __('Gallery',
+                'Company'
+            ),
+            'singular_name' => __(
+                'Gallery',
+                'Company'
+            )
+        ),
+        'public' => true,
+        'supports' => array('title', 'custom-fields', 'page-attributes'
+        )
+    ));
+
 }
 add_action('init', 'Company_custom_posts');
+
+
+//comments_field  
+function Company_comments_field($filed)
+{
+   
+    $comment = $filed['comment'];
+    $name =  $filed['name'];
+    $email =  $filed['email'];
+    $website =  $filed['website'];
+    $cokkies = $filed['cokkies'];
+
+    unset($filed['comment']);
+    unset($filed['name']);
+    unset($filed['email']);
+    unset($filed['website']);
+    unset($filed['cokkies']);
+
+    $filed['name'] = $name;
+    $filed['email'] = $email;
+    $filed['website'] = $website;
+    $filed['comment'] = $comment;
+    $filed['cokkies'] = $cokkies;
+    return $filed;
+}
+add_filter('comments_form_filed', 'Company_comments_field');
+
+//create widget  for lastes  post
+function  Company_Widgets()
+{
+    //Sidebar
+    register_sidebar(array(
+        'name' => __('Main Sidebar','Company'),
+        'id' => 'main_sidebar',
+        'description' => __('Main Sidebar for Blog Page', 'Company'),
+        'before_widget' => '<div class="single-sidebar">',
+        'after_widget' => '</div>',
+        'before_title' => '<h4>',
+        'after_title' => '</h4>'
+    ));
+
+
+    //Sidebar Footer 
+    register_sidebar(array(
+        'name' => __('Footer Sidebar 1', 'Company'),
+        'id' => 'footer_sidebar1',
+        'description' => __('Footer Widget 1 for showing Widget', 'Company'),
+        'before_widget' => '<div class="single-footer footer-logo">',
+        'after_widget' => '</div>',
+        'before_title' => '<h3>',
+        'after_title' => '</h3>'
+    ));
+
+
+    //Sidebar Footer2 
+    register_sidebar(array(
+        'name' => __('Footer Sidebar 2', 'Company'),
+        'id' => 'footer_sidebar2',
+        'description' => __('Footer Widget 2 for showing Widget', 'Company'),
+        'before_widget' => '<div class="single-footer ">',
+        'after_widget' => '</div>',
+        'before_title' => '<h4>',
+        'after_title' => '</h4>'
+    ));
+
+
+    //Sidebar Footer3 
+    register_sidebar(array(
+        'name' => __('Footer Sidebar 3', 'Company'),
+        'id' => 'footer_sidebar3',
+        'description' => __('Footer Widget 3 for showing Widget', 'Company'),
+        'before_widget' => '<div class="single-footer ">',
+        'after_widget' => '</div>',
+        'before_title' => '<h4>',
+        'after_title' => '</h4>'
+    ));
+
+
+
+    //Sidebar Footer4 
+    register_sidebar(array(
+        'name' => __('Footer Sidebar 4', 'Company'),
+        'id' => 'footer_sidebar4',
+        'description' => __('Footer Widget 4 for showing Widget', 'Company'),
+        'before_widget' => '<div class="single-footer contact-box">',
+        'after_widget' => '</div>',
+        'before_title' => '<h4>',
+        'after_title' => '</h4>'
+    ));
+}
+
+add_action('widgets_init', 'Company_Widgets');

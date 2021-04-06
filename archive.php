@@ -6,10 +6,10 @@ get_header();
       <div class="row">
          <div class="col-xl-12">
             <div class="breadcumb">
-               <h4><?php the_archive_title() ?></h4>
+               <h4>Blog</h4>
                <ul>
                   <li><a href="<?php echo site_url(); ?>"></a>Home</li> /
-                  <li><?php the_archive_title() ?></li>
+                  <li>Blog</li>
                </ul>
             </div>
          </div>
@@ -22,10 +22,13 @@ get_header();
       <div class="row">
 
          <?php
-        
-         $query =  new  WP_Query();
-         while (have_posts()) {
-            the_post();
+         $arg = array(
+            'post_type' => 'post',
+            'posts_per_page' => 6
+         );
+         $query =  new  WP_Query($arg);
+         while ($query->have_posts()) {
+            $query->the_post();
             // $sub_heading = get_post_meta(get_the_ID(), 'sub_heading', true);
             // $text_field = get_post_meta(get_the_ID(), 'text_field', true);
             // $link_field = get_post_meta(get_the_ID(), 'link_field', true);
@@ -62,8 +65,8 @@ get_header();
 
       <div class="row">
          <div class="col-xl-12">
-            <?php
-            posts_nav_link('-', ('Previous Posts'), ('Next'));
+            <?php 
+            posts_nav_link('-',('Previous Posts'),('Next'));
             ?>
          </div>
       </div>
