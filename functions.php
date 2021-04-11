@@ -1,4 +1,6 @@
 <?php
+
+get_template_part('/inc/company-options');
 //add  style and js files
 function Company_enqueue_scripts()
 {
@@ -35,7 +37,7 @@ add_action('wp_enqueue_scripts', 'Company_enqueue_scripts');
 function Company_setup_theme()
 {
     add_theme_support('title-tag');
-    add_theme_support('post-thumbnails', array('post', 'sliders', 'team', 'Testimonials', 'Gallery'));
+    add_theme_support('post-thumbnails', array('post', 'sliders', 'team', 'Testimonials', 'Gallery', 'Profile'));
     load_theme_textdomain('company', get_template_directory_uri() . '/language');
     register_nav_menus(array(
         'main-menu' => __('Primary Menu', 'company')
@@ -110,6 +112,39 @@ function Company_custom_posts()
         'supports' => array('title', 'custom-fields', 'page-attributes'
         )
     ));
+
+    // Custom Profile  with  Field 
+    register_post_type('portfolio', array(
+        'labels' => array(
+            'name' => __(
+                'Portfolios',
+                'Company'
+            ),
+            'singular_name' => __(
+                'Portfolios',
+                'Company'
+            )
+        ),
+        'public' => true,
+        'supports' => array(
+            'title', 'editor','thumbnail','custom-fields', 'page-attributes'
+        )
+    ));
+    // Profile taxonomy
+
+    register_taxonomy('portfolio-cat',
+        'portfolio',
+        array(
+            'labels' => array(
+                'name' => __('Categories', 'Company'),
+                'singular_name' => __('Category', 'Company')
+            ),
+            'hierarchical' => true,
+            'show_admin_column' => true
+        )
+    );
+
+    
 
 }
 add_action('init', 'Company_custom_posts');
@@ -202,6 +237,12 @@ function  Company_Widgets()
         'before_title' => '<h4>',
         'after_title' => '</h4>'
     ));
+
+
 }
 
 add_action('widgets_init', 'Company_Widgets');
+
+
+
+

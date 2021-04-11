@@ -22,7 +22,7 @@ get_header();
       <div class="row">
 
          <?php
-        
+
          $query =  new  WP_Query();
          while (have_posts()) {
             the_post();
@@ -62,12 +62,17 @@ get_header();
 
       <div class="row">
          <div class="col-xl-12">
-            <?php
-            posts_nav_link('-', ('Previous Posts'), ('Next'));
-            ?>
+           
+            <?php  posts_nav_link( '-', ('&laquo; Previous Posts'), ('Next Posts raquo;') ); ?>
+            
          </div>
       </div>
+
+
 </section>
+
+
+
 <!-- Latest News Area End -->
 <!-- CTA Area Start -->
 <section class="cta">

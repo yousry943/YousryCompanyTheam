@@ -48,15 +48,8 @@ get_header();
             <div class="row">
                <div class="col-md-7">
                   <div class="contact-form">
-                     <form action="#">
-                        <div class="row">
-                           <input type="text" placeholder="name" />
-                           <input type="text" placeholder="email" />
-                           <input type="text" placeholder="subject" />
-                           <textarea placeholder="message"></textarea>
-                           <input type="submit" value="send message" />
-                        </div>
-                     </form>
+                 
+                   <?php echo do_shortcode('[contact-form-7 id="361" title="Contact  Form"]') ?>
                   </div>
                </div>
                <div class="col-md-5">
