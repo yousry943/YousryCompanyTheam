@@ -75,4 +75,30 @@ if (class_exists('CSF')) {
 
         )
     );
+
+
+    CSF::createSection($prefix,array(
+        'parent' => 'header_options',
+        'title'=> 'logo',
+        'fields' => array(
+            array(
+            'id' => 'logo',
+            'type'=>'media',
+            'title'=> __('Uplode Logo ','company')
+            )
+
+        ),
+    ));
+
+    CSF::createSection($prefix,array(
+        'id' => 'about_options',
+        'title' => __('About  Section' ,'company')
+    ));
+
+
+    
+
+
+
+
 }
